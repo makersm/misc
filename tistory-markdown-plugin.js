@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var elem = null;
         for (var i = 0; i < tryAt.length; ++i) {
             elem = document.querySelectorAll(tryAt[i]);
-            if (elem) break;
+            if (elem.length !== 0) break;
         }
         return elem;
     }
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var container = CONTAINER_SELECTOR ? document.querySelector(CONTAINER_SELECTOR) : _find_container();
     var contents = CONTENTS_SELECTOR ? document.querySelectorAll(CONTENTS_SELECTOR) : _find_contents();
     contents = Array.from(contents);
+	if(contents.length === 0) return;
     var firstline = contents[0].innerText.trim();
     if (firstline != '@markdown' && firstline != '@마크다운') {
         console.log("Contents must be starts with '@markdown' or '@마크다운' but was '" + firstline + "'");
